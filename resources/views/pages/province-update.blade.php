@@ -27,11 +27,11 @@
                     @method('PUT')
                     @csrf
                     <div class="modal-body">
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="name" class="form-label">ID</label>
                             <input type="text" class="form-control" id="id" name="id"
                                 value="{{ $province->id }}" required>
-                        </div>
+                        </div> --}}
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" name="name"

@@ -35,7 +35,7 @@ class RegencyController extends Controller
     {
         $validate = $request->validate([
             'province_id' => 'required|exists:provinces,id',
-            'id' => 'required|unique:regencies',
+            // 'id' => 'required|unique:regencies',
             'name' => 'required'
         ]);
 
@@ -56,7 +56,7 @@ class RegencyController extends Controller
     {
         $validate = $request->validate([
             'province_id' => 'required|exists:provinces,id',
-            'id' => 'required|unique:regencies,id,' . $id,
+            // 'id' => 'required|unique:regencies,id,' . $id,
             'name' => 'required'
         ]);
 

@@ -60,6 +60,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/village/update/{id}', [VillageController::class, 'updateForm'])->name('village.update.form');
         Route::put('/village/{id}', [VillageController::class, 'update'])->name('village.update');
         Route::delete('/village/{id}', [VillageController::class, 'destroy'])->name('village.destroy');
+
+        Route::post('/import/provinces', [ProvinceController::class, 'import'])->name('province.import');
     });
 
     Route::get('/token', [TokenController::class, 'index'])->name('token.index');

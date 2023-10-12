@@ -21,17 +21,19 @@
             <form action="{{ route('token.index') }}" method="GET">
                 @csrf
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default"><i class="bi bi-search"></i></span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
                     <input type="text" class="form-control" aria-label="Sizing example input" name="search"
                         aria-describedby="inputGroup-sizing-default" placeholder="search by name">
-                    <button type="input" class="btn btn-dark ms-2">Search</button>
+                    <button type="input" class="btn btn-dark ms-2"><i class="bi bi-search"></i></button>
                 </div>
             </form>
         </div>
-        <div class="col-2">
-            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addProvinceModal">Add
-                token</button>
-        </div>
+        @if (auth()->user()->role->name != 'admin')
+            <div class="col-2">
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addProvinceModal">Add
+                    token</button>
+            </div>
+        @endif
     </div>
     <table class="table table-striped">
         <thead>
@@ -40,7 +42,7 @@
                 @if (auth()->user()->role->name == 'admin')
                     <th scope="col">Username</th>
                 @endif
-                <th scope="col">Name</th>
+                <th scope="col">Name Token</th>
                 <th scope="col">Token</th>
                 <th scope="col">Action</th>
             </tr>

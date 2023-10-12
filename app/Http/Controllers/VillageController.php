@@ -33,7 +33,7 @@ class VillageController extends Controller
     {
         $validate = $request->validate([
             'district_id' => 'required|exists:districts,id',
-            'id' => 'required|unique:villages,id',
+            // 'id' => 'required|unique:villages,id',
             'name' => 'required'
         ]);
 
@@ -54,7 +54,7 @@ class VillageController extends Controller
     {
         $validate = $request->validate([
             'district_id' => 'required|exists:districts,id',
-            'id' => 'required|unique:villages,id,' . $id,
+            // 'id' => 'required|unique:villages,id,' . $id,
             'name' => 'required'
         ]);
 

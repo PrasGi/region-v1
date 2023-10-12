@@ -33,7 +33,7 @@ class DistrictController extends Controller
     {
         $validate = $request->validate([
             'regency_id' => 'required|exists:regencies,id',
-            'id' => 'required|unique:districts,id',
+            // 'id' => 'required|unique:districts,id',
             'name' => 'required'
         ]);
 
@@ -54,7 +54,7 @@ class DistrictController extends Controller
     {
         $validate = $request->validate([
             'regency_id' => 'required|exists:regencies,id',
-            'id' => 'required|unique:districts,id,' . $id,
+            // 'id' => 'required|unique:districts,id,' . $id,
             'name' => 'required'
         ]);
 

@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\DistrictController;
+use App\Http\Controllers\Api\ProvinceController;
+use App\Http\Controllers\Api\RegencyController;
+use App\Http\Controllers\Api\VillageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('xtoken')->group(function () {
+    Route::get('/provinces', [ProvinceController::class, 'index']);
+    Route::get('/regencies', [RegencyController::class, 'index']);
+    Route::get('/districts', [DistrictController::class, 'index']);
+    Route::get('/villages', [VillageController::class, 'index']);
 });

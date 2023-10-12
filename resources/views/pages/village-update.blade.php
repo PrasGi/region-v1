@@ -32,11 +32,11 @@
                             <input type="text" class="form-control" id="id" name="district_id"
                                 value="{{ $village->district_id }}" required>
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="name" class="form-label">ID</label>
                             <input type="text" class="form-control" id="id" name="id"
                                 value="{{ $village->id }}" required>
-                        </div>
+                        </div> --}}
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" name="name"

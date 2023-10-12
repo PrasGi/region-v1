@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\ProvinceImport;
 use App\Models\Province;
 use Illuminate\Http\Request;
 
+use Maatwebsite\Excel\Facades\Excel;
 use function PHPUnit\Framework\isEmpty;
 
 class ProvinceController extends Controller
@@ -24,7 +26,7 @@ class ProvinceController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'id' => 'required|unique:provinces',
+            // 'id' => 'required|unique:provinces',
             'name' => 'required'
         ]);
 
@@ -44,7 +46,7 @@ class ProvinceController extends Controller
     public function update(Request $request, $id)
     {
         $validate = $request->validate([
-            'id' => 'required|unique:provinces,id,' . $id . ',id',
+            // 'id' => 'required|unique:provinces,id,' . $id . ',id',
             'name' => 'required'
         ]);
 
@@ -62,5 +64,21 @@ class ProvinceController extends Controller
         }
 
         return redirect()->route('province.index')->withErrors(['failed' => 'Data gagal dihapus']);
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
+        $file = $request->file('file');
+        $result = Excel::import(new ProvinceImport, $file);
+
+        if ($result) {
+            return redirect()->route('province.index')->with('success', 'Data berhasil diimport');
+        }
+
+        return redirect()->route('province.index')->withErrors(['failed' => 'Data gagal diimport']);
     }
 }

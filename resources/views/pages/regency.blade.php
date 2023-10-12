@@ -31,10 +31,10 @@
             <form action="{{ route('regency.index') }}" method="GET">
                 @csrf
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default"><i class="bi bi-search"></i></span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
                     <input type="text" class="form-control" aria-label="Sizing example input" name="search"
                         aria-describedby="inputGroup-sizing-default" placeholder="search by name or province id">
-                    <button type="input" class="btn btn-dark ms-2">Search</button>
+                    <button type="input" class="btn btn-dark ms-2"><i class="bi bi-search"></i></button>
                 </div>
             </form>
         </div>
@@ -102,10 +102,10 @@
                             <label for="name" class="form-label">Province ID</label>
                             <input type="text" class="form-control" id="id" name="province_id" required>
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="name" class="form-label">ID</label>
                             <input type="text" class="form-control" id="id" name="id" required>
-                        </div>
+                        </div> --}}
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" name="name" required>
