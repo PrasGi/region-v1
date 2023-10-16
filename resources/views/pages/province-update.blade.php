@@ -37,6 +37,21 @@
                             <input type="text" class="form-control" id="name" name="name"
                                 value="{{ $province->name }}" required>
                         </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Large Area</label>
+                            <input type="text" class="form-control" id="name" name="large_area"
+                                value="{{ $province->large_area }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Total Population</label>
+                            <input type="text" class="form-control" id="name" name="total_population"
+                                value="{{ $province->total_population }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Regional Center</label>
+                            <input type="text" class="form-control" id="name" name="regional_center"
+                                value="{{ $province->regional_center }}" required>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Save</button>

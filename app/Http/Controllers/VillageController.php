@@ -34,7 +34,9 @@ class VillageController extends Controller
         $validate = $request->validate([
             'district_id' => 'required|exists:districts,id',
             // 'id' => 'required|unique:villages,id',
-            'name' => 'required'
+            'name' => 'required',
+            'large_area' => 'required',
+            'total_population' => 'required',
         ]);
 
         if ($this->villageModel->create($validate)) {
@@ -55,7 +57,9 @@ class VillageController extends Controller
         $validate = $request->validate([
             'district_id' => 'required|exists:districts,id',
             // 'id' => 'required|unique:villages,id,' . $id,
-            'name' => 'required'
+            'name' => 'required',
+            'large_area' => 'required',
+            'total_population' => 'required'
         ]);
 
         if ($this->villageModel->find($id)->update($validate)) {

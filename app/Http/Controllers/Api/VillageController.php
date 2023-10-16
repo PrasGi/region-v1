@@ -26,12 +26,16 @@ class VillageController extends Controller
             $datas->where('district_id', $request->district_id);
         }
 
-        $datas = new VillageCollection($datas->paginate(50));
+        $datas = new VillageCollection($datas->paginate($request->per_page ?? 50));
 
-        return response()->json([
+        $temp = [
             'status_code' => 200,
-            'message' => 'Village List',
-            'data' => $datas
-        ]);
+            'message' => 'Province List',
+            'data' => $datas,
+        ];
+
+        $temp = array_merge($temp, $datas->toArray($request));
+
+        return response()->json($temp);
     }
 }

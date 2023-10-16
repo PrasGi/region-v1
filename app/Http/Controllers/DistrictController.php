@@ -34,7 +34,10 @@ class DistrictController extends Controller
         $validate = $request->validate([
             'regency_id' => 'required|exists:regencies,id',
             // 'id' => 'required|unique:districts,id',
-            'name' => 'required'
+            'name' => 'required',
+            'large_area' => 'required',
+            'total_population' => 'required',
+            'regional_center' => 'required'
         ]);
 
         if ($this->districtModel->create($validate)) {
@@ -55,7 +58,10 @@ class DistrictController extends Controller
         $validate = $request->validate([
             'regency_id' => 'required|exists:regencies,id',
             // 'id' => 'required|unique:districts,id,' . $id,
-            'name' => 'required'
+            'name' => 'required',
+            'large_area' => 'required',
+            'total_population' => 'required',
+            'regional_center' => 'required'
         ]);
 
         if ($this->districtModel->find($id)->update($validate)) {

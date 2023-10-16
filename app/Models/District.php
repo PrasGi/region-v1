@@ -46,7 +46,9 @@ class District extends Model
         return $query->where(function (Builder $query) use ($search) {
             $query->where('name', 'like', "%$search%")
                 ->orWhereHas('regency', function (Builder $query) use ($search) {
-                    $query->where('id', $search);
+                    if (is_numeric($search)) {
+                        $query->where('id', $search);
+                    }
                 });
         });
     }

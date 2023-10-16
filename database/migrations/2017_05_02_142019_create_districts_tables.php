@@ -21,9 +21,12 @@ class CreateDistrictsTables extends Migration
     public function up()
     {
         Schema::create('districts', function (Blueprint $table) {
-            $table->id();
+            $table->id()->from(9471041);
             $table->foreignId('regency_id');
             $table->string('name', 50);
+            $table->string('large_area')->nullable();
+            $table->string('total_population')->nullable();
+            $table->string('regional_center')->nullable();
             $table->foreign('regency_id')
                 ->references('id')
                 ->on('regencies')

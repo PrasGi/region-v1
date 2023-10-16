@@ -38,42 +38,54 @@
                 </div>
             </form>
         </div>
-        <div class="col-2">
-            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addProvinceModal">Add
-                village</button>
-        </div>
+        @if (auth()->user()->role->name == 'admin')
+            <div class="col-2">
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addProvinceModal">Add
+                    village</button>
+            </div>
+        @endif
     </div>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">#</th>
+                <th scope="col">Regency Name</th>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
-                <th scope="col">Action</th>
+                <th scope="col">Large Area</th>
+                <th scope="col">Total Population</th>
+                @if (auth()->user()->role->name == 'admin')
+                    <th scope="col">Action</th>
+                @endif
             </tr>
         </thead>
         <tbody>
             @foreach ($datas as $index => $data)
                 <tr>
                     <td>{{ $index + 1 }}</td>
+                    <td>{{ $data->district->name }}</td>
                     <td>{{ $data->id }}</td>
                     <td>{{ $data->name }}</td>
-                    <td>
-                        <div class="row">
-                            <div class="col-2">
-                                <a type="button" class="btn btn-warning update-btn"
-                                    href="{{ route('village.update.form', $data->id) }}">Update</a>
+                    <td>{{ $data->large_area ?? '-' }}</td>
+                    <td>{{ $data->total_population ?? '-' }}</td>
+                    @if (auth()->user()->role->name == 'admin')
+                        <td>
+                            <div class="row">
+                                <div class="col">
+                                    <a type="button" class="btn btn-warning update-btn"
+                                        href="{{ route('village.update.form', $data->id) }}">Update</a>
+                                </div>
+                                <div class="col">
+                                    <form action="{{ route('village.destroy', $data->id) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash3"></i>
+                                            Delete</button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="col-3">
-                                <form action="{{ route('village.destroy', $data->id) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash3"></i>
-                                        Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    </td>
+                        </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>
@@ -109,6 +121,14 @@
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Large Area</label>
+                            <input type="text" class="form-control" id="name" name="large_area" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Total Population</label>
+                            <input type="text" class="form-control" id="name" name="total_population" required>
                         </div>
                     </div>
                     <div class="modal-footer">

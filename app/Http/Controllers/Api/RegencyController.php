@@ -26,12 +26,16 @@ class RegencyController extends Controller
             $datas->where('province_id', $request->province_id);
         }
 
-        $datas = new RegencyCollection($datas->paginate(50));
+        $datas = new RegencyCollection($datas->paginate($request->per_page ?? 50));
 
-        return response()->json([
+        $temp = [
             'status_code' => 200,
-            'message' => 'Regency List',
-            'data' => $datas
-        ]);
+            'message' => 'Province List',
+            'data' => $datas,
+        ];
+
+        $temp = array_merge($temp, $datas->toArray($request));
+
+        return response()->json($temp);
     }
 }

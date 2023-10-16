@@ -66,7 +66,7 @@
                             <label class="form-label" for="form3Example4">Password</label>
                         </div>
                         <div>
-                            <p>Don't have account? <a href="{{ route('register.form') }}">Register</a></p>
+                            {{-- <p>Don't have account? <a href="{{ route('register.form') }}">Register</a></p> --}}
                         </div>
                         <div class="text-center text-lg-start">
                             <button type="submit" class="btn btn-primary btn-lg"

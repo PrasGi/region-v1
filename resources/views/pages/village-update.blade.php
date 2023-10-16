@@ -42,6 +42,16 @@
                             <input type="text" class="form-control" id="name" name="name"
                                 value="{{ $village->name }}" required>
                         </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Large Area</label>
+                            <input type="text" class="form-control" id="name" name="large_area"
+                                value="{{ $village->large_area }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Total Population</label>
+                            <input type="text" class="form-control" id="name" name="total_population"
+                                value="{{ $village->total_population }}" required>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Save</button>

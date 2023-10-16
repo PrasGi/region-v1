@@ -27,7 +27,10 @@ class ProvinceController extends Controller
     {
         $validate = $request->validate([
             // 'id' => 'required|unique:provinces',
-            'name' => 'required'
+            'name' => 'required',
+            'large_area' => 'required',
+            'total_population' => 'required',
+            'regional_center' => 'required'
         ]);
 
         if ($this->provinceModel->create($validate)) {
@@ -47,7 +50,10 @@ class ProvinceController extends Controller
     {
         $validate = $request->validate([
             // 'id' => 'required|unique:provinces,id,' . $id . ',id',
-            'name' => 'required'
+            'name' => 'required',
+            'large_area' => 'required',
+            'total_population' => 'required',
+            'regional_center' => 'required'
         ]);
 
         if ($this->provinceModel->find($id)->update($validate)) {

@@ -28,11 +28,11 @@
                 </div>
             </form>
         </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addProvinceModal">Add
+                token</button>
+        </div>
         @if (auth()->user()->role->name != 'admin')
-            <div class="col-2">
-                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addProvinceModal">Add
-                    token</button>
-            </div>
         @endif
     </div>
     <table class="table table-striped">

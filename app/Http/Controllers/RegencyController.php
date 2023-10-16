@@ -18,8 +18,8 @@ class RegencyController extends Controller
     {
         $datas = $this->regencyModel->query();
 
-        if ($request->search != null) {
-            $datas = $datas->search($request->search);
+        if ($request->name != null) {
+            $datas = $datas->where('name', 'like', '%' . $request->name . '%');
         }
 
         if ($request->province_id != null) {
@@ -36,7 +36,10 @@ class RegencyController extends Controller
         $validate = $request->validate([
             'province_id' => 'required|exists:provinces,id',
             // 'id' => 'required|unique:regencies',
-            'name' => 'required'
+            'name' => 'required',
+            'large_area' => 'required',
+            'total_population' => 'required',
+            'regional_center' => 'required'
         ]);
 
         if ($this->regencyModel->create($validate)) {
@@ -57,7 +60,10 @@ class RegencyController extends Controller
         $validate = $request->validate([
             'province_id' => 'required|exists:provinces,id',
             // 'id' => 'required|unique:regencies,id,' . $id,
-            'name' => 'required'
+            'name' => 'required',
+            'large_area' => 'required',
+            'total_population' => 'required',
+            'regional_center' => 'required'
         ]);
 
         if ($this->regencyModel->find($id)->update($validate)) {

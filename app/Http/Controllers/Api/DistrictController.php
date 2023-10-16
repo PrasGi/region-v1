@@ -26,12 +26,16 @@ class DistrictController extends Controller
             $datas->where('regency_id', $request->regency_id);
         }
 
-        $datas = new DistrictCollection($datas->paginate(50));
+        $datas = new DistrictCollection($datas->paginate($request->per_page ?? 50));
 
-        return response()->json([
+        $temp = [
             'status_code' => 200,
-            'message' => 'District List',
-            'data' => $datas
-        ]);
+            'message' => 'Province List',
+            'data' => $datas,
+        ];
+
+        $temp = array_merge($temp, $datas->toArray($request));
+
+        return response()->json($temp);
     }
 }

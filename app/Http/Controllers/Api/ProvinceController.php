@@ -26,12 +26,16 @@ class ProvinceController extends Controller
             $datas->where('id', $request->id);
         }
 
-        $datas = new ProvinceCollection($datas->paginate(50));
+        $datas = new ProvinceCollection($datas->paginate($request->per_page ?? 50));
 
-        return response()->json([
+        $temp = [
             'status_code' => 200,
             'message' => 'Province List',
-            'data' => $datas
-        ]);
+            'data' => $datas,
+        ];
+
+        $temp = array_merge($temp, $datas->toArray($request));
+
+        return response()->json($temp);
     }
 }

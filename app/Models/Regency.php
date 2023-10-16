@@ -10,6 +10,7 @@
 namespace App\Models;
 
 use AzisHapidin\IndoRegion\Traits\RegencyTrait;
+use Hamcrest\Type\IsNumeric;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -44,7 +45,9 @@ class Regency extends Model
         return $query->where(function (Builder $query) use ($search) {
             $query->where('name', 'like', "%$search%")
                 ->orWhereHas('province', function (Builder $query) use ($search) {
-                    $query->where('id', $search);
+                    if (is_numeric($search)) {
+                        $query->where('id', $search);
+                    }
                 });
         });
     }
