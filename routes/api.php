@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\DistrictController;
 use App\Http\Controllers\Api\ProvinceController;
 use App\Http\Controllers\Api\RegencyController;
 use App\Http\Controllers\Api\VillageController;
+use App\Http\Controllers\MapController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,6 @@ Route::middleware('xtoken')->group(function () {
     Route::get('/districts', [DistrictController::class, 'index']);
     Route::get('/villages', [VillageController::class, 'index']);
 });
+
+Route::post('/province/update/region', [MapController::class, 'updateProvince']);
+Route::post('/import/province/location', [MapController::class, 'importLocationsProvince']);

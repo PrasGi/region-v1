@@ -1,5 +1,8 @@
 @extends('partials.index')
 
+@section('script-head')
+@endsection
+
 @section('content')
     @error('failed')
         <div class="alert alert-danger" role="alert">
@@ -54,7 +57,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">Map</th>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Large Area</th>
@@ -68,7 +71,8 @@
         <tbody>
             @foreach ($datas as $index => $data)
                 <tr>
-                    <td>{{ $index + 1 }}</td>
+                    <td><a href="{{ route('map.province.index', $data->id) }}" class="btn btn-outline-dark"><i
+                                class="bi bi-geo-alt"></i></a></td>
                     <td>{{ $data->id }}</td>
                     <td>{{ $data->name }}</td>
                     <td>{{ $data->large_area ?? '-' }}</td>
@@ -168,4 +172,24 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal untuk menambah wilayah -->
+    <div class="modal fade" id="addRegionModal" tabindex="-1" aria-labelledby="addRegionModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importProvinceModalLabel">Import Province</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="" id="map" style="height: 400px"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" id="addRegionButton" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script-body')
 @endsection

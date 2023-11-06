@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\RegencyController;
 use App\Http\Controllers\TokenController;
@@ -65,6 +66,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/village/update/{id}', [VillageController::class, 'updateForm'])->name('village.update.form');
         Route::put('/village/{id}', [VillageController::class, 'update'])->name('village.update');
         Route::delete('/village/{id}', [VillageController::class, 'destroy'])->name('village.destroy');
+
+        Route::get('/map/province/{province}', [MapController::class, 'provinceIndex'])->name('map.province.index');
 
         Route::post('/import/provinces', [ProvinceController::class, 'import'])->name('province.import');
     });
